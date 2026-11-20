@@ -1,5 +1,7 @@
 package dsa;
 
+import java.util.NoSuchElementException;
+
 /**
  * A manually implemented Queue using singly-linked nodes.
  *
@@ -62,11 +64,11 @@ public class WaitingQueue<T> {
      * Removes and returns the element at the front of the queue.
      *
      * @return The front element.
-     * @throws RuntimeException if the queue is empty.
+     * @throws NoSuchElementException if the queue is empty.
      */
     public T dequeue() {
         if (isEmpty()) {
-            throw new RuntimeException("Cannot dequeue: Waiting list is empty.");
+            throw new NoSuchElementException("Cannot dequeue: Waiting list is empty.");
         }
         T data = front.data;
         front  = front.next;
@@ -81,11 +83,11 @@ public class WaitingQueue<T> {
      * Returns the front element without removing it.
      *
      * @return The front element.
-     * @throws RuntimeException if the queue is empty.
+     * @throws NoSuchElementException if the queue is empty.
      */
     public T peek() {
         if (isEmpty()) {
-            throw new RuntimeException("Cannot peek: Waiting list is empty.");
+            throw new NoSuchElementException("Cannot peek: Waiting list is empty.");
         }
         return front.data;
     }
