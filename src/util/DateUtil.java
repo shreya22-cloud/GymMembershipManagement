@@ -58,6 +58,6 @@ public final class DateUtil {
      * @return true if valid, false otherwise.
      */
     public static boolean isValidPhone(String phone) {
-        return phone != null && phone.matches("\\d{10}");
+        return phone != null && phone.matches("[0-9]{10}");
     }
 }
