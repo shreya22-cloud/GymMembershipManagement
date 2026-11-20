@@ -10,8 +10,7 @@ import java.time.format.DateTimeParseException;
  */
 public final class DateUtil {
 
-    private static final DateTimeFormatter FORMATTER =
-            DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ISO_LOCAL_DATE;
 
     /** Private constructor to prevent instantiation. */
     private DateUtil() {}
