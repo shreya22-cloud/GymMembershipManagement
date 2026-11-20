@@ -1,6 +1,7 @@
 package model;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 /**
  * Represents a gym member.
@@ -60,7 +61,7 @@ public class Member extends Person {
         try {
             LocalDate expiry = LocalDate.parse(expiryDate);
             return !LocalDate.now().isAfter(expiry);
-        } catch (Exception e) {
+        } catch (DateTimeParseException e) {
             return false;
         }
     }
