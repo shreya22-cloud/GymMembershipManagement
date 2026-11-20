@@ -8,7 +8,7 @@ import util.ConsoleUtil;
 import util.DateUtil;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -33,7 +33,7 @@ public class MemberService {
      * Value: MembershipPlan object.
      * (HashMap requirement)
      */
-    private final Map<String, MembershipPlan> plans = new HashMap<>();
+    private final Map<String, MembershipPlan> plans = new LinkedHashMap<>();
 
     private int memberCounter = 1; // Counter for auto-generating member IDs
 
