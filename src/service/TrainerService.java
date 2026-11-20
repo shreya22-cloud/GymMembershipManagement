@@ -224,6 +224,11 @@ public class TrainerService {
      * @param memberId The member to enqueue.
      */
     private void enqueueToWaitingList(String memberId) {
+        if (waitingList.contains(memberId)) {
+            ConsoleUtil.printInfo("Member " + memberId + " is already on the trainer waiting list."
+                    + " No duplicate entry was added.");
+            return;
+        }
         waitingList.enqueue(memberId);
         ConsoleUtil.printInfo("Member " + memberId + " added to trainer waiting list."
                 + " Position: " + waitingList.size());
