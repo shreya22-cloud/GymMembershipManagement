@@ -39,7 +39,7 @@ GymMembershipManagement/
 ## How to Compile and Run
 
 ### Prerequisites
-- Java JDK 11 or above installed.
+- Java JDK 17 or above installed.
 - `javac` and `java` available in your PATH.
 
 ### Step 1: Navigate to the project folder
