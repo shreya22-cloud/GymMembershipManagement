@@ -1,6 +1,7 @@
 package dsa;
 
 import java.util.NoSuchElementException;
+import java.util.Objects;
 
 /**
  * A manually implemented Queue using singly-linked nodes.
@@ -106,6 +107,23 @@ public class WaitingQueue<T> {
      */
     public int size() {
         return size;
+    }
+
+    /**
+     * Checks whether the queue contains the specified element.
+     *
+     * @param data The element to search for.
+     * @return true if an equal element is present.
+     */
+    public boolean contains(T data) {
+        Node<T> current = front;
+        while (current != null) {
+            if (Objects.equals(current.data, data)) {
+                return true;
+            }
+            current = current.next;
+        }
+        return false;
     }
 
     /**
