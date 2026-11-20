@@ -141,7 +141,18 @@ public class TrainerService {
                 return;
             }
 
-            // Assign trainer
+            String previousTrainerId = member.getAssignedTrainerId();
+            if (trainerId.equals(previousTrainerId)) {
+                ConsoleUtil.printInfo("Member is already assigned to trainer " + trainerId + ".");
+                return;
+            }
+            if (previousTrainerId != null) {
+                List<String> previousAssignments = trainerAssignments.get(previousTrainerId);
+                if (previousAssignments != null) {
+                    previousAssignments.remove(memberId);
+                }
+            }
+
             member.setAssignedTrainerId(trainerId);
             trainerAssignments.get(trainerId).add(memberId);
 
