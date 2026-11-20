@@ -8,6 +8,7 @@ import util.ConsoleUtil;
 import util.DateUtil;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,8 +50,8 @@ public class MemberService {
 
     // ─── Getters for use by other services ────────────────────────────────
 
-    public List<Member> getAllMembers()              { return members; }
-    public Map<String, MembershipPlan> getAllPlans() { return plans;   }
+    public List<Member> getAllMembers()              { return Collections.unmodifiableList(members); }
+    public Map<String, MembershipPlan> getAllPlans() { return Collections.unmodifiableMap(plans);   }
 
     // ─── Auto-generate unique member ID ───────────────────────────────────
 
