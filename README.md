@@ -65,6 +65,16 @@ find src -name "*.java" | xargs javac -d out
 java -cp out Main
 ```
 
+### Run the regression tests
+
+From the project folder in PowerShell:
+
+```powershell
+$files = Get-ChildItem -Path src, tests -Recurse -Filter "*.java" | Select-Object -ExpandProperty FullName
+javac -d out $files
+java -cp out RegressionTests
+```
+
 ---
 
 ## Features
