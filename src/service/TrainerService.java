@@ -55,7 +55,7 @@ public class TrainerService {
      *
      * @param scanner Console scanner.
      */
-    public void addTrainer(Scanner scanner) {
+    public void addTrainer(Scanner scanner, MemberService memberService) {
         ConsoleUtil.printHeader("ADD NEW TRAINER");
 
         System.out.print("  Enter trainer name        : ");
@@ -100,7 +100,7 @@ public class TrainerService {
         ConsoleUtil.printSuccess("Trainer added successfully! Trainer ID: " + trainerId);
 
         // Auto-process waiting list: assign this new trainer to waiting members
-        processWaitingList();
+        processWaitingList(memberService);
     }
 
     // ─── Feature 8: Assign Trainer ───────────────────────────────────────
@@ -238,7 +238,7 @@ public class TrainerService {
      * Processes the waiting queue when a new trainer is added.
      * Dequeues members and assigns the latest trainer to them.
      */
-    private void processWaitingList() {
+    private void processWaitingList(MemberService memberService) {
         if (waitingList.isEmpty()) return;
 
         // Find the latest trainer (the one just added)
@@ -250,7 +250,17 @@ public class TrainerService {
         ConsoleUtil.printInfo("Processing waiting list...");
 
         while (!waitingList.isEmpty()) {
-            String waitingMemberId = waitingList.dequeue();
+            String waitingMemberId = waitingList.peek();
+            Member member;
+            try {
+                member = memberService.findMemberById(waitingMemberId);
+            } catch (MemberNotFoundException e) {
+                waitingList.dequeue();
+                ConsoleUtil.printError("Removing unknown member from waiting list: " + e.getMessage());
+                continue;
+            }
+            waitingList.dequeue();
+            member.setAssignedTrainerId(latestTrainerId);
             trainerAssignments.get(latestTrainerId).add(waitingMemberId);
             ConsoleUtil.printSuccess("Auto-assigned " + latestTrainer.getName()
                     + " to waiting member: " + waitingMemberId);

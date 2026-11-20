@@ -47,7 +47,7 @@ public class Main {
                 case "4"  -> memberService.renewMembership(scanner);
                 case "5"  -> attendanceService.markAttendance(scanner, memberService);
                 case "6"  -> attendanceService.viewAttendance(scanner, memberService);
-                case "7"  -> trainerService.addTrainer(scanner);
+                case "7"  -> trainerService.addTrainer(scanner, memberService);
                 case "8"  -> trainerService.assignTrainer(scanner, memberService);
                 case "9"  -> memberService.searchMember(scanner);
                 case "10" -> reportService.generateReport();
