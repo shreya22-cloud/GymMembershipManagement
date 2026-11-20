@@ -7,6 +7,7 @@ import util.ConsoleUtil;
 import util.DateUtil;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -128,6 +129,8 @@ public class AttendanceService {
      * Used by ReportService for the attendance summary.
      */
     public Map<String, List<String>> getAttendanceRecords() {
-        return attendanceRecords;
+        Map<String, List<String>> snapshot = new HashMap<>();
+        attendanceRecords.forEach((memberId, dates) -> snapshot.put(memberId, List.copyOf(dates)));
+        return Collections.unmodifiableMap(snapshot);
     }
 }
